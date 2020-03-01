@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use \App\Bills;
 
 class BillsController extends Controller
 {
@@ -15,9 +16,9 @@ class BillsController extends Controller
 
     public function index() {
 
-        // $bills = \App\Bills::all();
+        // $bills = Bills::all();
 
-        $bills = \App\Bills::where('user_id', auth()->id())->get();
+        $bills = Bills::where('user_id', auth()->id())->get();
 
         return view('bills/index', compact('bills'));
 
@@ -31,7 +32,7 @@ class BillsController extends Controller
 
     public function edit($id) {
 
-        $bill = \App\Bills::find($id);
+        $bill = Bills::find($id);
 
         return view('bills/edit', compact('bill'));
 
@@ -39,7 +40,7 @@ class BillsController extends Controller
 
     public function update($id) {
 
-        $bill = \App\Bills::find($id);
+        $bill = Bills::find($id);
 
         $bill->update(request(['title', 'description', 'number']));
 
@@ -48,7 +49,7 @@ class BillsController extends Controller
 
     public function destroy($id) {
 
-        $bill = \App\Bills::find($id);
+        $bill = Bills::find($id);
 
         $bill->delete();
 
@@ -66,7 +67,7 @@ class BillsController extends Controller
 
        $validated['user_id'] = auth()->id();
 
-       \App\Bills::create($validated);
+       Bills::create($validated);
        
        return redirect('/');
 
