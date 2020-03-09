@@ -16,6 +16,8 @@
 // });
 
 Route::get('/', 'BillsController@index');
+Route::post('/createamount', 'MonthlyIncomesController@store');
+
 
 // Route::resources('', 'BillsController');
 

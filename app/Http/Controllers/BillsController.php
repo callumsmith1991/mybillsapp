@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use \App\Bills;
+use \App\MonthlyIncomes;
 
 class BillsController extends Controller
 {
@@ -16,11 +17,34 @@ class BillsController extends Controller
 
     public function index() {
 
-        // $bills = Bills::all();
-
         $bills = Bills::where('user_id', auth()->id())->get();
+        $monthly_income = MonthlyIncomes::where('user_id', auth()->id())->first();
 
-        return view('bills/index', compact('bills'));
+        if($monthly_income) {
+
+            $income = $monthly_income->amount;
+
+
+        } else {
+
+            $income = 0;
+
+        }
+
+        $bills_total = 0;
+        $take_home_pay = 0;
+
+        foreach($bills as $bill) {
+            $bills_total += $bill->number;
+        }
+
+        if($income > 0) {
+
+            $take_home_pay = $income - $bills_total;
+
+        }
+
+        return view('bills/index', compact('bills', 'bills_total', 'income', 'take_home_pay'));
 
     }
 
@@ -33,6 +57,12 @@ class BillsController extends Controller
     public function edit($id) {
 
         $bill = Bills::find($id);
+
+        if($bill->user_id != auth()->id()) {
+
+            return redirect('/');
+
+        }
 
         return view('bills/edit', compact('bill'));
 

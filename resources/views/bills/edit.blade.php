@@ -10,10 +10,19 @@
     {{ csrf_field() }}
     {{ method_field('PATCH') }}
 
-<input type="text" name="title" value="{{$bill->title}}">
-    <input type="text" name="description" value="{{$bill->description}}">
-    <input type="text" name="number" value="{{$bill->number}}">
-    <input type="submit" value="Update" class="success button">
+    <div class="form-group">
+    <label for="title">Title</label>
+    <input type="text" name="title" value="{{$bill->title}}" class="form-control">
+    </div>
+    <div class="form-group">
+    <label for="description">Description</label>
+    <input type="text" name="description" value="{{$bill->description}}" class="form-control">
+    </div>
+    <div class="form-group">
+    <label for="number">Amount</label>
+    <input type="text" name="number" value="{{$bill->number}}" class="form-control">
+    </div>
+    <input type="submit" value="Update" class="btn btn-primary">
 </form>
 
 <form method="POST" action="/edit/{{ $bill->id}}">
@@ -23,7 +32,9 @@
 
 
 
-    <input type="submit" value="delete" class="alert button">
+    <div class="form-group">
+    <input type="submit" value="Delete" class="btn btn-danger">
+    </div>
 
 
 </form>

@@ -8,10 +8,18 @@
 <form method="POST" action="/create">
 
     {{ csrf_field() }}
-    <input type="text" name="title" placeholder="Title">
-    <textarea type="text" name="description" placeholder="Description"></textarea>
-    <input type="text" name="number" placeholder="Amount">
-    <input type="submit" class="success button">
+    <div class="form-group">
+    <input type="text" name="title" placeholder="Title" class="form-control">
+    </div>
+
+    <div class="form-group">
+    <textarea type="text" name="description" placeholder="Description" class="form-control"></textarea>
+    </div>
+
+    <div class="form-group">
+    <input type="text" name="number" placeholder="Amount" class="form-control">
+    </div>
+    <input type="submit" class="btn btn-primary">
 </form>
 
 @if ($errors->any())
