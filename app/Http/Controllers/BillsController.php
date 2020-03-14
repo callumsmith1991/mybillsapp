@@ -44,7 +44,7 @@ class BillsController extends Controller
 
         }
 
-        return view('bills/index', compact('bills', 'bills_total', 'income', 'take_home_pay'));
+        return view('bills/index', compact('bills', 'bills_total', 'income', 'take_home_pay', 'monthly_income'));
 
     }
 

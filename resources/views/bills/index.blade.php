@@ -22,7 +22,38 @@
 
 @else 
 
-<p>Monthly Income: £{{$income}}</p>
+<div class="row">
+    <div class="col-md-6">
+        <p>Monthly Income: £{{$income}}</p>
+    </div>
+    <div class="col-md-6">
+    <form method="POST" action="/update/{{$monthly_income->id}}">
+        {{ csrf_field() }}
+        {{ method_field('PATCH') }}
+            <div class="row justify-content-end">
+                <div class="col-md-6 form-group">
+                <input type="text" name="amount" class="form-control" value="{{$income}}" placeholder="Amount" />
+                </div>
+                <div class="col-md-6">
+                    <input type="submit" class="btn btn-primary" value="Update">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="row">
+            <div class="col-md-2">
+                <p><button class="btn btn-success">Edit</button></p>
+            </div>
+            <div class="col-md-2">
+                <p><button class="btn btn-danger">Remove</button></p>
+            </div>
+        </div>
+    </div>
+</div>
 
 @endif
 

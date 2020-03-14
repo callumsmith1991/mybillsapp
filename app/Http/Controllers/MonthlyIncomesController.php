@@ -12,8 +12,15 @@ class MonthlyIncomesController extends Controller
 
     }
 
-    public function update() {
+    public function update(MonthlyIncomes $monthly_income) {
 
+        $validated = request()->validate([
+            'amount' => 'required'
+        ]);
+
+        $monthly_income->update($validated);
+
+        return redirect('/');
 
     }
 

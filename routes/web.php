@@ -17,6 +17,8 @@
 
 Route::get('/', 'BillsController@index');
 Route::post('/createamount', 'MonthlyIncomesController@store');
+Route::patch('/update/{monthly_income}', 'MonthlyIncomesController@update');
+
 
 
 // Route::resources('', 'BillsController');
