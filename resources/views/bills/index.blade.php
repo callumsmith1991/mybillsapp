@@ -3,7 +3,7 @@
 
 @section('content')
 
-<h1>{{ Auth::user()->name }}'s Bills</h1>
+{{-- <h1>{{ Auth::user()->name }}'s Bills</h1>
 
 @if($income == 0)
 
@@ -113,4 +113,4 @@
 @endif
 
 
-@endsection
+@endsection --}}
