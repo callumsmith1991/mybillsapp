@@ -9,6 +9,7 @@ require('./bootstrap');
 window.Vue = require('vue');
 
 import App from './App.vue';
+import Nav from './Nav.vue';
 import VueRouter from 'vue-router';
 import VueAxios from 'vue-axios';
 import axios from 'axios';
@@ -22,8 +23,15 @@ const router = new VueRouter({
     routes: routes
 });
 
+const nav = new Vue({
+    el: '#nav',
+    router: router,
+    render: h => h(Nav),
+});
+
 const app = new Vue({
     el: '#app',
     router: router,
     render: h => h(App),
 });
+

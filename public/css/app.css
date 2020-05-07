@@ -11356,3 +11356,35 @@ a.text-dark:focus {
   }
 }
 
+.t-parent {
+  position: relative;
+}
+
+.t-parent .spinner-container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  overflow: auto;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+          align-items: center;
+  background-color: #f8fafc;
+  opacity: 0.8;
+}
+
+.t-parent .spinner-container.height-before-content {
+  height: 250px;
+}
+
+.t-parent .validation-errors {
+  margin-top: 10px;
+}
+
+.t-parent .validation-errors ul.alert {
+  padding-left: 30px;
+}
+

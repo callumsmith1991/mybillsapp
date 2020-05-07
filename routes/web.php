@@ -32,9 +32,12 @@
 
 Auth::routes();
 
+Route::get('/ca', 'HomeController@check_auth');
+
 Route::get('/{any}', function () {
     return view('layouts/app');
 })->where('any', '.*');
 
 
 Route::get('/home', 'HomeController@index')->name('home');
+

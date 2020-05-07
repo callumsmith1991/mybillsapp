@@ -69,6 +69,8 @@
     </div>
 </nav>
 
+<div id="nav"></div>
+
 <body>
 
     
@@ -77,11 +79,7 @@
 
     
     
-    <div id="app">
-       
-
-        
-    </div>
+    <div id="app"></div>
 
     @auth
 

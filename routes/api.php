@@ -20,9 +20,7 @@ use Illuminate\Http\Request;
 Route::group(['middleware' => 'auth:api'], function () {
 
     Route::get('/', 'BillsController@index');
-    Route::post('/createamount', 'MonthlyIncomesController@store');
-    Route::patch('/update/{monthly_income}', 'MonthlyIncomesController@update');
-
+    
     // Route::get('/create', 'BillsController@create');
     Route::get('/edit/{bill}', 'BillsController@edit');
 
@@ -34,5 +32,12 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::delete('/delete/{bill}', 'BillsController@destroy');
 
 
+
+    Route::get('/monthly-income', 'MonthlyIncomesController@edit');
+    Route::post('/createamount', 'MonthlyIncomesController@store');
+    Route::patch('/update/{monthly_income}', 'MonthlyIncomesController@update');
+
     
 });
+
+

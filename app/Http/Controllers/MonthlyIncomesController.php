@@ -10,9 +10,29 @@ class MonthlyIncomesController extends Controller
     
     public function edit() {
 
+        $monthly_income = MonthlyIncomes::where('user_id', auth('api')->id())->first();
+
+        $monthly_income = $monthly_income->toArray();
+
+        if(count($monthly_income) > 0) {
+
+            return response()->json($monthly_income);
+
+        } else {
+
+            return response()->json('No monthly income found for this user');
+        }
+
+
     }
 
-    public function update(MonthlyIncomes $monthly_income) {
+    public function update($id) {
+
+        $monthly_income = MonthlyIncomes::find($id);
+
+        // $bill->update(request(['title', 'description', 'number']));
+
+        $r = request()->input('amount');
 
         $validated = request()->validate([
             'amount' => 'required'
@@ -20,7 +40,7 @@ class MonthlyIncomesController extends Controller
 
         $monthly_income->update($validated);
 
-        return redirect('/');
+        return response()->json('Monthly Income Updated');
 
     }
 

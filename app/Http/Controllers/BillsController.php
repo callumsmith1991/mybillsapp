@@ -28,32 +28,37 @@ class BillsController extends Controller
 
         // $bills = dd(auth('api')->id());
         // $bills = Bills::all()->toArray();
-        // $monthly_income = MonthlyIncomes::where('user_id', auth()->id())->first();
+        $monthly_income = MonthlyIncomes::where('user_id', auth('api')->id())->first();
+        $monthly_income->toArray();
 
 
-        // if($monthly_income) {
+        if($monthly_income) {
 
-        //     $income = $monthly_income->amount;
+            $income = $monthly_income->amount;
 
 
-        // } else {
+        } else {
 
-        //     $income = 0;
+            $income = 0;
 
-        // }
+        }
 
-        // $bills_total = 0;
-        // $take_home_pay = 0;
+        $bills_total = 0;
+        $take_home_pay = 0;
 
-        // foreach($bills as $bill) {
-        //     $bills_total += $bill->number;
-        // }
+        foreach($bills as $bill) {
+            $bills_total += $bill['number'];
+        }
 
-        // if($income > 0) {
+        if($income > 0) {
 
-        //     $take_home_pay = $income - $bills_total;
+            $take_home_pay = $income - $bills_total;
 
-        // }
+        }
+
+        $bills['monthlyIncome'] = $income;
+        $bills['billsTotal'] = $bills_total;
+        $bills['takeHomePay'] = $take_home_pay;
 
         // // return view('bills/index', compact('bills', 'bills_total', 'income', 'take_home_pay', 'monthly_income'));
 
@@ -72,9 +77,9 @@ class BillsController extends Controller
             return redirect('/');
         }
 
-        $bill = $bill->toArray();
+        $bill_arr = $bill->toArray();
 
-        return response()->json($bill);
+        return response()->json($bill_arr);
     }
 
     public function update($id)
